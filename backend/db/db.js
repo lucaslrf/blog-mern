@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-let mongo = mongoose.connect('mongodb://localhost/blog', {
+const url = "mongodb+srv://user_stack:blogmern@blog-mern.cx4et.mongodb.net/blog-web?retryWrites=true&w=majority";
+
+let mongo = mongoose.connect(url, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
