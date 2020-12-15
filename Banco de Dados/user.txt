@@ -1,0 +1,15 @@
+
+db.user.insertOne({
+        "_id" : NumberInt(1),
+        "email" : "romen@gmail.com", 
+        "password" : "Romen123"
+    }); 
+	
+	
+db.user.insertOne({
+		"_id" : NumberInt(2),
+        "email" : "Lucasrodrigues@hotmail.com", 
+        "password" : "Lucas123"
+    }); 
+	
+	

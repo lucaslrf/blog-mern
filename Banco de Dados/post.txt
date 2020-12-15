@@ -1,0 +1,16 @@
+
+db.post.insertOne({ 
+    "_id" : NumberInt(1), 
+    "userId" : NumberInt(1), 
+    "dateHourPublicacao" : ISODate("2020-12-12T21:42:08.000+0000"), 
+    "title" : "Casos de Covid-19 Vitória da Conquista", 
+    "content" : "Vitória da Conquista está registrando altos caso de COVID-19 nesse fim de ano", 
+});
+
+db.post.insertOne({ 
+    "_id" : NumberInt(2), 
+    "UserId" : NumberInt(2), 
+    "dateHourPublicacao" : ISODate("2020-13-12T11:42:08.000+0000"), 
+    "title" : "Fim de Ano em Conquista", 
+    "content" : "Vitória da Conquista celebra o fim de ano de 2020 com alta iluminação em suas praças", 
+});
