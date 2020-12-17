@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../../services/api";
-import Spinner from "../Elements/Spinner/Spinner";
+import Spinner from "../Elements/Spinner/index";
 import Post from "../Post";
 import {
   PostMainStyled, 

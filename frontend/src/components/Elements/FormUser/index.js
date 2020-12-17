@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const FormUser = ({ isLogin }) => {
 
   const [email, setEmail] = useState("");
+  const [nome, setNome] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   
@@ -55,6 +56,10 @@ const FormUser = ({ isLogin }) => {
     setConfirmPassword(event.target.value);
  }
 
+ const handleChangeNome = (event) => {
+    setNome(event.target.value);
+ }
+
   return (
     <Form className="w-50 m-2">
       <Row>
@@ -70,19 +75,19 @@ const FormUser = ({ isLogin }) => {
               onChange={(event) => handleChangeEmail(event)}
             />
           </FormGroup>
-          <FormGroup>
-            <Label for="password">Senha</Label>
-            <Input
-              type="password"
-              name="password"
-              value={password}
-              id="password-user"
-              placeholder="Senha"
-              onChange={(event) => handleChangePassword(event)}
-            />
-          </FormGroup>
           {login ? (
             <>
+             <FormGroup>
+                <Label for="password">Senha</Label>
+                <Input
+                  type="password"
+                  name="password"
+                  value={password}
+                  id="password-user"
+                  placeholder="Senha"
+                  onChange={(event) => handleChangePassword(event)}
+                />
+                </FormGroup>
               <Button onClick={() => handlerLogin(email, password)}>Entrar</Button>
               <Row>
                 <Link to="/register" style={{marginTop:"10px"}}>Cadastre-se</Link>
@@ -90,6 +95,28 @@ const FormUser = ({ isLogin }) => {
             </>
           ) : (
             <>
+            <FormGroup>
+              <Label for="name">Nome</Label>
+              <Input
+                type="name"
+                name="name"
+                value={nome}
+                id="name-user"
+                placeholder="Nome"
+                onChange={(event) => handleChangeNome(event)}
+              />
+            </FormGroup>
+             <FormGroup>
+              <Label for="password">Senha</Label>
+              <Input
+                type="password"
+                name="password"
+                value={password}
+                id="password-user"
+                placeholder="Senha"
+                onChange={(event) => handleChangePassword(event)}
+              />
+            </FormGroup>
               <FormGroup>
                 <Label for="confim-password">Confirmar Senha</Label>
                 <Input

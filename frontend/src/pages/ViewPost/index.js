@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useParams } from "react";
 import api from "../../services/api";
-import Base from "../../components/Elements/Base/Base";
-import Spinner from "../../components/Elements/Spinner/Spinner";
+import Base from "../../components/Elements/Base/index";
+import Spinner from "../../components/Elements/Spinner/index";
 import Post from "../../components/Post";
 import {Container} from 'reactstrap';
 

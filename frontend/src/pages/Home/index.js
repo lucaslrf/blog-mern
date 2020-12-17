@@ -1,5 +1,5 @@
 import React, {} from "react";
-import Base from "../../components/Elements/Base/Base";
+import Base from "../../components/Elements/Base/index";
 import {Container} from 'reactstrap';
 import Posts from '../../components/Posts';
 
