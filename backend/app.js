@@ -5,10 +5,12 @@ const db = require("./db/db");
 const header_middleware = require("./middlewares/header")
 const postRouter = require("./routes/post");
 const userRoutes = require("./routes/user");
+const cors = require('cors');
 const app = express()
 
 const PORT = process.env.PORT || 3001
 
+app.use(cors())
 app.use(express.json())
 app.use(header_middleware)
 const directory = path.join(__dirname, './images');
