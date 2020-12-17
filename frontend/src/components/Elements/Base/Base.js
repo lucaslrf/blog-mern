@@ -1,10 +1,14 @@
 import React from 'react'
+import Header from './Header/Header';
 import { Container } from './styles';
 
-export default function Base(children) {
+const Base = (props) => {
     return (
         <Container>
-            {children}
+            <Header />
+            {props.children}
         </Container>
     );
 }
+
+export default Base;

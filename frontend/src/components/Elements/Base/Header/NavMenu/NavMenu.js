@@ -24,12 +24,6 @@ export default function NavMenu() {
             <NavItem>
               <NavLink href="https://github.com/reactstrap/reactstrap">Login</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href="/">Criar post</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/">Perfil</NavLink>
-            </NavItem>
           </Nav>
           <NavbarText>Bem Vindo!</NavbarText>
         </Collapse>

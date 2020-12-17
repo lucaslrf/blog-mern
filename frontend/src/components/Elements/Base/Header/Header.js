@@ -1,10 +1,12 @@
 import React from 'react'
 import NavMenu from './NavMenu/NavMenu'
 
-export default function Header() {
+const Header = () => {
     return (
-        <div className="m-2">
+        <div>
             <NavMenu></NavMenu>
         </div>
-    )
+    );
 }
+
+export default Header;

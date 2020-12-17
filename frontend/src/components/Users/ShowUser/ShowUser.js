@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ToText from '../../../utils/ToText';
 import './ShowUser.css';
 
-function ShowUser(props) {
+const ShowUser = (props) => {
     return (
         <div className="featured-user">
             <ul className="list-unstyled">
