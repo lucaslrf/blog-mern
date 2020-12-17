@@ -5,12 +5,9 @@ const checkAuth = require("../middlewares/check-auth");
 
 router.post("",  checkAuth, (req, res, next) => {
     console.log(req.body)
-    const url = req.protocol + "://" + req.get("host")
-    console.log(url)
     const post = new Post({
         title: req.body.title,
         content: req.body.content,
-        imagePath: url + "/images/" + req.file.filename,
         creator: req.userData.userId,
         postDate: req.body.postDate,
     })
@@ -44,24 +41,16 @@ router.post("",  checkAuth, (req, res, next) => {
 
 
 router.put("/:id", checkAuth,  (req, res, next) => {
-        let imagePath = req.body.imagePath;
-        if (req.file) {
-            const url = req.protocol + "://" + req.get("host");
-            imagePath = url + "/images/" + req.file.filename
-        }
 
-        console.log("90",req.body)
         const post = new Post({
-            _id: req.body.id,
             title: req.body.title,
             content: req.body.content,
-            imagePath: imagePath,
-            creator: req.userData.userId
+            creator: req.userData.userId,
+            postDate: req.userData.postDate
         });
-        console.log("98---------------------",post);
         Post.updateOne(
             { _id: req.params.id, creator: req.userData.userId },
-            post
+            req.body
           ).then(result => {
             if(result){
                 res.status(200).json({ message: "Update successful!" });

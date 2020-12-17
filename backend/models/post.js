@@ -9,6 +9,10 @@ const Post = mongoose.model('Post', {
         type: String,
         required: true
     },
+    postDate: {
+        type: Date,
+        required: true
+    },
     creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
