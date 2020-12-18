@@ -14,14 +14,19 @@ import {
 } from "./styled";
 import {Container} from 'reactstrap';
 
-const Posts = () => {
+const Posts = ({my}) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [reloadPosts, setReloadPosts] = useState(false);
+
+  const handlerDelete = async () => {
+    setReloadPosts(!reloadPosts);
+  };
 
   const buscarPostagens = async () => {
     setLoading(true);
     try {
-      const { data } = await api.get(`/api/posts`);
+      const { data } = my ? await api.get(`/api/my-posts`) : await api.get(`/api/posts`);
       console.log(data.posts);
       setPosts(data.posts);
       setLoading(false);
@@ -32,7 +37,7 @@ const Posts = () => {
 
   useEffect(() => {
     buscarPostagens();
-  }, []);
+  }, [reloadPosts]);
 
   if (loading) {
     return <Spinner></Spinner>;
@@ -42,7 +47,7 @@ const Posts = () => {
     <Container>
       {posts.map((post, index) => (
         <>
-        <Post post={post} index={index} list={true} />
+        <Post post={post} index={index} list={true} my={my} handle={handlerDelete}/>
         </>
       ))} 
     </Container>

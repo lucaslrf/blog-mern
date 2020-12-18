@@ -9,7 +9,7 @@ router.post("",  checkAuth, (req, res, next) => {
         title: req.body.title,
         content: req.body.content,
         creator: req.userData.userId,
-        postDate: req.body.postDate,
+        postDate: Date.now()
     })
     console.log(post)
     post.save().
@@ -46,7 +46,7 @@ router.put("/:id", checkAuth,  (req, res, next) => {
             title: req.body.title,
             content: req.body.content,
             creator: req.userData.userId,
-            postDate: req.userData.postDate
+            postDate:  Date.now()
         });
         Post.updateOne(
             { _id: req.params.id, creator: req.userData.userId },

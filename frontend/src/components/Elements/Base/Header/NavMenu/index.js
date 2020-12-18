@@ -25,6 +25,9 @@ export default function NavMenu() {
             <NavItem>
               <Link to="/login" style={{marginLeft:"10px", marginRight: "10px", color: "#6c757d"}}>Login</Link>
             </NavItem>
+            <NavItem>
+              <Link to="/my-posts" style={{marginLeft:"10px", marginRight: "10px", color: "#6c757d"}}>Meus Posts</Link>
+            </NavItem>
           </Nav>
           <NavbarText>Bem Vindo!</NavbarText>
         </Collapse>

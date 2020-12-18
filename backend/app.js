@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
 // app.use("/", express.static(path.join(__dirname, 'angular')));
 
 app.use("/api/posts", postRouter);
+app.use("/api/my-posts", postRouter);
 app.use("/api/user", userRoutes);
 
 // app.use((req, res, next) => {

@@ -3,8 +3,11 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import {GuardedRoute, GuardProvider} from 'react-router-guards';
 import Home from './pages/Home';
 import ViewPost from './pages/ViewPost';
+import CreatePost from './pages/CreatePost';
 import Login from './components/Login';
 import Register from './components/Register/Register';
+import EditPost from './pages/EditPost';
+import MyPosts from './pages/MyPosts';
 
 
 const Routes = () => {
@@ -12,7 +15,10 @@ const Routes = () => {
     <Router>
       <GuardProvider>
         <GuardedRoute path="/" exact component={Home} />
+        <GuardedRoute path="/new-post" exact component={CreatePost} />
+        <GuardedRoute path="/edit-post/:id" exact component={EditPost} />
         <GuardedRoute path="/posts/:id" exact component={ViewPost} />
+        <GuardedRoute path="/my-posts" exact component={MyPosts} />
         <GuardedRoute path="/login" exact component={Login} />
         <GuardedRoute path="/register" exact component={Register} />
       </GuardProvider>
