@@ -1,6 +1,7 @@
 import decode from "jwt-decode";
 
 const TOKEN_KEY = "blog-web-mern";
+const USER_ID = "user-id-blog";
 
 const AuthService = {
   setToken(token: string) {
@@ -31,6 +32,14 @@ const AuthService = {
 
   logout() {
     localStorage.removeItem(TOKEN_KEY);
+  },
+
+  setUserId(userId: string) {
+    localStorage.setItem(USER_ID, userId);
+  },
+
+  getUserId(){
+    return localStorage.getItem(USER_ID);
   },
 
   getUsuario() {

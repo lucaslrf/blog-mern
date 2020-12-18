@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Register from './components/Register/Register';
 import EditPost from './pages/EditPost';
 import MyPosts from './pages/MyPosts';
+import Profile from './components/Profile';
 
 
 const Routes = () => {
@@ -20,6 +21,7 @@ const Routes = () => {
         <GuardedRoute path="/posts/:id" exact component={ViewPost} />
         <GuardedRoute path="/my-posts" exact component={MyPosts} />
         <GuardedRoute path="/login" exact component={Login} />
+        <GuardedRoute path="/profile" exact component={Profile} />
         <GuardedRoute path="/register" exact component={Register} />
       </GuardProvider>
     </Router>

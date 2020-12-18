@@ -46,9 +46,7 @@ const Posts = ({my}) => {
   return (
     <Container>
       {posts.map((post, index) => (
-        <>
-        <Post post={post} index={index} list={true} my={my} handle={handlerDelete}/>
-        </>
+        <Post key={`$post-${index}`} post={post} index={index} list={true} my={my} handle={handlerDelete}/>
       ))} 
     </Container>
   );

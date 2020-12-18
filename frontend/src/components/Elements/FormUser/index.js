@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 import api from "../../../services/api";
-import { Link } from "react-router-dom";
+import auth from "../../../services/auth";
+import { Link, useHistory} from "react-router-dom";
 
 const FormUser = ({ isLogin }) => {
-
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [nome, setNome] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +13,7 @@ const FormUser = ({ isLogin }) => {
   
   const login = isLogin;
 
-  const handlerSignup = async (email, password, confirmPassword) => {
+  const handlerSignup = async (email, password, confirmPassword, nome) => {
 
     if(confirmPassword !== password){
         console.log('senhas diferentes: ', confirmPassword, password);
@@ -20,12 +21,22 @@ const FormUser = ({ isLogin }) => {
     }
 
     try {
-        const body = {
-            email: email,
-            password: password,
-        }
+      const body = {
+          email: email,
+          password: password,
+      }
       const { data } = await api.post(`/api/user/signup`, body);
-      console.log(data);
+      console.log(data, data.result._id);
+
+      const profile = {
+        username: nome, 
+        bio: "",
+        userId: data.result._id
+      }
+      console.log('profile: ', profile);
+      const { dataProfile } = await api.post(`/api/profile/create`, profile);
+      console.log(dataProfile);
+      history.replace('/login');
     } catch (error) {
         console.log(error);
     }
@@ -39,6 +50,9 @@ const FormUser = ({ isLogin }) => {
         }
         const { data } = await api.post(`/api/user/login`, body);
         console.log(data);
+        auth.setToken(data.token);
+        auth.setUserId(data.userId);
+        history.replace('/');
     } catch (error) {
         console.log(error);
     }
@@ -128,7 +142,7 @@ const FormUser = ({ isLogin }) => {
                   onChange={(event) => handleChangeConfirmPassword(event)}
                 />
               </FormGroup>
-              <Button onClick={() => handlerSignup(email, password, confirmPassword)}>Cadastrar</Button>
+              <Button onClick={() => handlerSignup(email, password, confirmPassword, nome)}>Cadastrar</Button>
             </>
           )}
         </Col>
