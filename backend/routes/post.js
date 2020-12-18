@@ -65,7 +65,7 @@ router.put("/:id", checkAuth,  (req, res, next) => {
 
 
 
-router.get("/mypost", checkAuth, (req, res, next) => {
+router.get("/my-posts", checkAuth, (req, res, next) => {
     Post.find({creator: req.userData.userId}).then(post => {
       if (post) {
         res.status(200).json({
