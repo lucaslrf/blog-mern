@@ -2,6 +2,7 @@ import decode from "jwt-decode";
 
 const TOKEN_KEY = "blog-web-mern";
 const USER_ID = "user-id-blog";
+const USER_NAME= "user-name";
 
 const AuthService = {
   setToken(token: string) {
@@ -42,12 +43,12 @@ const AuthService = {
     return localStorage.getItem(USER_ID);
   },
 
-  getUsuario() {
-    const token =this.getToken();
+  setUserName(userName: string){
+    localStorage.setItem(USER_NAME, userName);
+  },
 
-    if(token === null) return
-
-    return decode(token);
+  getUserName(){
+    return localStorage.getItem(USER_NAME);
   }
 };
 

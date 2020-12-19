@@ -68,7 +68,7 @@ export default function NavMenu() {
             </>
           )}
         </Nav>
-        {auth.getToken() && <NavbarText>Bem Vindo!</NavbarText>}
+        {auth.getToken() && <NavbarText>Bem Vindo {auth.getUserName()}!</NavbarText>}
       </Collapse>
     </Navbar>
   );

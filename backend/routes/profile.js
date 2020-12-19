@@ -96,6 +96,7 @@ router.get("/bycreator/:id", (req, res, next) => {
     }
   });
 });
+
 router.get("/:id/mypost", (req, res, next) => {
   let user;
   let creatorId;

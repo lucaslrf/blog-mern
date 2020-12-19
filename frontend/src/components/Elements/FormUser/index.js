@@ -50,8 +50,11 @@ const FormUser = ({ isLogin }) => {
         }
         const { data } = await api.post(`/api/user/login`, body);
         console.log(data);
+        const { dataProfile } = await api.get( `api/profile/bycreator/${auth.getUserId()}`);
+        console.log('data update profile: ', dataProfile);
         auth.setToken(data.token);
         auth.setUserId(data.userId);
+        auth.setUserName(dataProfile.profile.username);
         history.replace('/');
     } catch (error) {
         console.log(error);

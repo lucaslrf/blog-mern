@@ -7,6 +7,7 @@ const commentRouter = require("./routes/comment");
 const postRouter = require("./routes/post");
 const userRoutes = require("./routes/user");
 const profileRouter = require("./routes/profile");
+const ratingRouter = require("./routes/rating")
 const cors = require('cors');
 const app = express()
 
@@ -27,6 +28,7 @@ app.use("/api/posts", postRouter);
 app.use("/api/comments", commentRouter);
 app.use("/api/user", userRoutes);
 app.use("/api/profile", profileRouter);
+app.use("/api/rating", ratingRouter);
 
 // app.use((req, res, next) => {
 //     res.sendFile(path.join(__dirname, "angular", "index.html"))
