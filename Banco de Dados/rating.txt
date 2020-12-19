@@ -1,13 +1,11 @@
 db.rating.insertOne({
         "_id" : NumberInt(1),
-		"userId" : NumberInt(1),
 		"postId" : NumberInt(2),
         "QuantityStars" : NumberInt(0), 
     }); 
 
 db.rating.insertOne({
         "_id" : NumberInt(2),
-		"userId" : NumberInt(2),
 		"postId" : NumberInt(2),
         "QuantityStars" : NumberInt(0), 
     });
