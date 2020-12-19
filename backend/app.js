@@ -6,6 +6,7 @@ const header_middleware = require("./middlewares/header")
 const postRouter = require("./routes/post");
 const userRoutes = require("./routes/user");
 const profileRouter = require("./routes/profile");
+const commentRouter = require("./routes/comment");
 const cors = require('cors');
 const app = express()
 
@@ -26,6 +27,7 @@ app.use("/api/posts", postRouter);
 app.use("/api/my-posts", postRouter);
 app.use("/api/user", userRoutes);
 app.use("/api/profile", profileRouter);
+app.use("/api/comments", commentRouter);
 
 // app.use((req, res, next) => {
 //     res.sendFile(path.join(__dirname, "angular", "index.html"))

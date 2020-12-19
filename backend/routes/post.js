@@ -42,12 +42,6 @@ router.post("",  checkAuth, (req, res, next) => {
 
 router.put("/:id", checkAuth,  (req, res, next) => {
 
-        const post = new Post({
-            title: req.body.title,
-            content: req.body.content,
-            creator: req.userData.userId,
-            postDate:  Date.now()
-        });
         Post.updateOne(
             { _id: req.params.id, creator: req.userData.userId },
             req.body
