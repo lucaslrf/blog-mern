@@ -26,7 +26,7 @@ const Posts = ({my}) => {
   const buscarPostagens = async () => {
     setLoading(true);
     try {
-      const { data } = my ? await api.get(`/api/my-posts`) : await api.get(`/api/posts`);
+      const { data } = my ? await api.get(`/api/posts/my-posts`) : await api.get(`/api/posts`);
       console.log(data.posts);
       setPosts(data.posts);
       setLoading(false);

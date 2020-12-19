@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Spinner from "../Elements/Spinner/index";
 import {
   PostMainStyled, 
   TitlePostMainStyled, 
@@ -11,10 +12,10 @@ import {
 } from "./styled";
 import {Container, Button} from 'reactstrap';
 import api from "../../services/api";
+import Comment from "../Comment";
 
 const Post = ({post, index, list, my, handle}) => {
-
-  const handlerDelete = async (id) => {
+  const handlerDeletePost = async (id) => {
     try {
       await api.delete(`/api/posts/`+id);
       handle();
@@ -36,7 +37,7 @@ const Post = ({post, index, list, my, handle}) => {
           <ContentPostStyled>{post.content}</ContentPostStyled>
           {list && <Link to={{pathname: '/posts/'+post._id}}>Ler mais...</Link>}
           {my && <Link to={{pathname: '/edit-post/'+post._id}}>Editar</Link>}
-          {my && <Button onClick={() => handlerDelete(post._id)} color="link">Excluir</Button>}
+          {my && <Button onClick={() => handlerDeletePost(post._id)} color="link">Excluir</Button>}
         </PostStyled>}
       </>
     </Container>

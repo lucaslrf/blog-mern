@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const db = require("./db/db");
 const header_middleware = require("./middlewares/header")
+const commentRouter = require("./routes/comment");
 const postRouter = require("./routes/post");
 const userRoutes = require("./routes/user");
 const profileRouter = require("./routes/profile");
@@ -23,7 +24,7 @@ app.get('/', (req, res) => {
 // app.use("/", express.static(path.join(__dirname, 'angular')));
 
 app.use("/api/posts", postRouter);
-app.use("/api/my-posts", postRouter);
+app.use("/api/comments", commentRouter);
 app.use("/api/user", userRoutes);
 app.use("/api/profile", profileRouter);
 
