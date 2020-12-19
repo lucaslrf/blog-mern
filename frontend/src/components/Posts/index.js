@@ -27,7 +27,7 @@ const Posts = ({ my }) => {
     setLoading(true);
     try {
       const { data } = my ? await api.get(`/api/posts/my-posts`) : await api.get(`/api/posts`);
-      console.log(data.posts);
+      console.log('dataPosts: ',data.posts);
       setPosts(data.posts);
       setLoading(false);
     } catch (error) {
@@ -45,7 +45,7 @@ const Posts = ({ my }) => {
 
   return (
     <Container>
-      {posts.map((post, index) => (
+      {!!posts.length && posts.map((post, index) => (
         <Post
           key={`$post-${index}`}
           post={post}
@@ -55,6 +55,7 @@ const Posts = ({ my }) => {
           handle={handlerDelete}
         />
       ))}
+      {!posts.length && <p>Você não tem nenhum post cadastrado</p>}
     </Container>
   );
 };

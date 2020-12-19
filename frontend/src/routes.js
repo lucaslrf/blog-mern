@@ -9,6 +9,7 @@ import Register from './components/Register/Register';
 import EditPost from './pages/EditPost';
 import MyPosts from './pages/MyPosts';
 import Profile from './components/Profile';
+import Report from './components/Report';
 
 
 const Routes = () => {
@@ -20,6 +21,7 @@ const Routes = () => {
         <GuardedRoute path="/edit-post/:id" exact component={EditPost} />
         <GuardedRoute path="/posts/:id" exact component={ViewPost} />
         <GuardedRoute path="/my-posts" exact component={MyPosts} />
+        <GuardedRoute path="/reports" exact component={Report} />
         <GuardedRoute path="/login" exact component={Login} />
         <GuardedRoute path="/profile" exact component={Profile} />
         <GuardedRoute path="/register" exact component={Register} />

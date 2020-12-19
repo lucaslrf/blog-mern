@@ -16,22 +16,37 @@ import BeautyStars from "beauty-stars";
 
 const Post = ({ post, index, list, my, handle }) => {
   const [rating, setRating] = useState(0);
+  const [refresh, setRefresh] = useState(true);
+  const [autor, setAutor] = useState("");
+
+  const loadRatingPost = async () => {
+    try {
+      const {data} =  await api.get(`/api/rating/bypost/` + post._id);
+      console.log('dataRatings: ', data);
+      const resto = data.rating && data.rating.quantityStars % 5;
+      const quantityStarsRating = data.rating ? (resto === 0 ? 5 : resto) : 0;
+      setRating(quantityStarsRating);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getAutorPost = async () =>{
+    try{
+      const dataProfile = await api.get( `api/profile/bycreator/${post.creator}`);
+      console.log('data profile post: ', dataProfile.data);
+      setAutor(dataProfile && dataProfile.data ? dataProfile.data.profile.username : "Desconhecido");
+    }catch(error){
+      setAutor("Desconhecido");
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
-    const loadRatingPost = async () => {
-      try {
-        const {data} =  await api.get(`/api/rating/bypost/` + post._id);
-        console.log('dataRatings: ', data);
-        const resto = data.rating && data.rating.quantityStars % 5;
-        const quantityStarsRating = data.rating ? (resto === 0 ? 5 : resto) : 0;
-        setRating(quantityStarsRating);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
     loadRatingPost();
-  }, []);
+    getAutorPost();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refresh]);
 
   const handlerDeletePost = async (id) => {
     try {
@@ -51,6 +66,7 @@ const Post = ({ post, index, list, my, handle }) => {
       }
       const {data} = await api.post(`/api/rating`, body);
       console.log('ratings: ', data);
+      setRefresh(prev => !prev);
     } catch (error) {
       console.log(error);
     }
@@ -74,7 +90,7 @@ const Post = ({ post, index, list, my, handle }) => {
           <PostStyled>
             <TitlePostStyled>{post.title}</TitlePostStyled>
             <CreatorPostStyled>
-              Autor: {post.creator} - Criado em: {post.postDate}
+              Autor: {autor} - Criado em: {post.postDate}
             </CreatorPostStyled>
             <ContentPostStyled>{post.content}</ContentPostStyled>
             <BeautyStars

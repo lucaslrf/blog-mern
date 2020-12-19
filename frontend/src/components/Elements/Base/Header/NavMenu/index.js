@@ -50,6 +50,9 @@ export default function NavMenu() {
             <NavItem>
               <Link to="/my-posts" style={{marginLeft:"10px", marginRight: "10px", color: "#6c757d"}}>Meus Posts</Link>
             </NavItem>
+            <NavItem>
+              <Link to="/reports" style={{marginLeft:"10px", marginRight: "10px", color: "#6c757d"}}>Relatórios</Link>
+            </NavItem>
               <NavItem>
                 <Link
                   to="/profile"

@@ -49,12 +49,13 @@ const FormUser = ({ isLogin }) => {
             password: password,
         }
         const { data } = await api.post(`/api/user/login`, body);
-        console.log(data);
-        const { dataProfile } = await api.get( `api/profile/bycreator/${auth.getUserId()}`);
-        console.log('data update profile: ', dataProfile);
+        console.log(data);        
         auth.setToken(data.token);
         auth.setUserId(data.userId);
-        auth.setUserName(dataProfile.profile.username);
+
+        const dataProfile = await api.get( `api/profile/bycreator/${auth.getUserId()}`);
+        console.log('data update profile: ', dataProfile.data);
+        auth.setUserName(dataProfile.data.profile.username);
         history.replace('/');
     } catch (error) {
         console.log(error);

@@ -6,7 +6,7 @@ import {Button} from 'reactstrap';
 const MyPosts = ({history}) => {
   return (
     <Base>
-      <Button onClick={() => history.push("/new-post")}>Cadastrar</Button>
+      <Button className="m-2" onClick={() => history.push("/new-post")}>Cadastrar</Button>
       <Posts my={true}/>
     </Base>
   );

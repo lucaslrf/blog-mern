@@ -59,7 +59,7 @@ router.put("/:id", checkAuth,  (req, res, next) => {
 
 
 
-router.get("/posts/my-posts", checkAuth, (req, res, next) => {
+router.get("/my-posts", checkAuth, (req, res, next) => {
     Post.find({creator: req.userData.userId}).then(post => {
       if (post) {
         res.status(200).json({
@@ -89,6 +89,21 @@ router.get("", (req, res, next) => {
         }
        
     });
+});
+
+
+router.get("/bydate", (req, res, next) => {
+  Post.find().sort({postDate: -1}).then(documents => {
+    if(documents){
+        res.status(200).json({
+            message: "Posts fetched successfully!",
+            posts: documents
+        });
+    }
+    else{
+        res.status(404).json({ message: "Post not found!" });
+    } 
+  });
 });
 
 router.get("/:id", (req, res, next) => {
