@@ -60,7 +60,7 @@ router.put("/:id", checkAuth,  (req, res, next) => {
 
 
 router.get("/my-posts", checkAuth, (req, res, next) => {
-    Post.find({creator: req.userData.userId}).then(post => {
+    Post.find({creator: req.userData.userId}).populate("comments").then(post => {
       if (post) {
         res.status(200).json({
             message: "Posts fetched successfully!",
@@ -77,8 +77,8 @@ router.get("/my-posts", checkAuth, (req, res, next) => {
   
 
 router.get("", (req, res, next) => {
-    Post.find().then(documents => {
-        if(documents){
+    Post.find().populate("comments").then(documents => {
+      if(documents){
             res.status(200).json({
                 message: "Posts fetched successfully!",
                 posts: documents
@@ -93,7 +93,7 @@ router.get("", (req, res, next) => {
 
 
 router.get("/by-date", (req, res, next) => {
-  Post.find().sort({postDate: -1}).then(documents => {
+  Post.find().sort({postDate: -1}).populate("comments").then(documents => {
     if(documents){
         res.status(200).json({
             message: "Posts fetched successfully!",
@@ -107,7 +107,8 @@ router.get("/by-date", (req, res, next) => {
 });
 
 router.get("/:id", (req, res, next) => {
-    Post.findById(req.params.id).then(post => {
+    Post.findById(req.params.id).populate("comments").then(post => {
+      console.log(post.comments)
       if (post) {
         res.status(200).json(post);
       } else {

@@ -17,7 +17,11 @@ const Post = mongoose.model('Post', {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    }
+    },
+    comments: [{ 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment"
+     }]
 });
 
 module.exports = Post

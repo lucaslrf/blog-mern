@@ -9,6 +9,7 @@ router.post("", checkAuth, (req, res, next) => {
     content: req.body.content,
     creator: req.userData.userId,
     post: req.body.postId,
+    commentDate: new Date()
   });
   console.log(comment);
   comment
