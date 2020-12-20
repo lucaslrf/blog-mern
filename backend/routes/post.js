@@ -92,7 +92,7 @@ router.get("", (req, res, next) => {
 });
 
 
-router.get("/bydate", (req, res, next) => {
+router.get("/by-date", (req, res, next) => {
   Post.find().sort({postDate: -1}).then(documents => {
     if(documents){
         res.status(200).json({

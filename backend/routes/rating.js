@@ -45,7 +45,7 @@ router.post("", (req, res, next) => {
           console.log(e);
           res.status(501).json({ message: "Error Adding Rating" + e });
         });
-        console.log("rating new", rating);
+      console.log("rating new", rating);
     }
   });
 });
@@ -74,6 +74,26 @@ router.get("", (req, res, next) => {
       res.status(404).json({ message: "Rating not found!" });
     }
   });
+});
+
+router.get("/posts-by-rating", (req, res, next) => {
+  Rating.find()
+    .sort({ quantityStars: -1 })
+    .populate("post")
+    .then((documents) => {
+      if (documents) {
+        const posts = [];
+        documents.map((document) => {
+          posts.push(document.post);
+        });
+        res.status(200).json({
+          message: "Posts fetched successfully!",
+          posts: posts
+        });
+      } else {
+        res.status(404).json({ message: "Post not found!" });
+      }
+    });
 });
 
 module.exports = router;

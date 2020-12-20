@@ -43,7 +43,7 @@ const Report = () => {
   const buscarPostagensRating = async () => {
     setLoading(true);
     try {
-      const { data } = await api.get(`/api/posts/my-posts`);
+      const { data } = await api.get(`/api/rating/posts-by-rating`);
       console.log("dataPosts: ", data.posts);
       setPosts(data.posts);
       setLoading(false);
@@ -55,7 +55,7 @@ const Report = () => {
   const buscarPostagensDate = async () => {
     setLoading(true);
     try {
-      const { data } = await api.get(`/api/posts/bydate`);
+      const { data } = await api.get(`/api/posts/by-date`);
       console.log("dataPosts: ", data.posts);
       setPosts(data.posts);
       setLoading(false);
@@ -78,10 +78,15 @@ const Report = () => {
     }
   };
 
+  const handleChange = (event) => {
+      setFiltro(event.target.value);
+      console.log('filtro: ', filtro);
+  }
+
   useEffect(() => {
     applyFilter(filtro);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [filtro]);
 
   if (loading) {
     <Spinner></Spinner>;
@@ -93,22 +98,21 @@ const Report = () => {
         <Form className="m-2">
           <FormGroup>
             <Label for="exampleSelect">Filtrar posts por: </Label>
-            <Input type="select" name="select" id="exampleSelect">
-              <option value={filtro} onChange={setFiltro("none")}>
+            <Input onChange={(e) => handleChange(e)} type="select" name="select" id="exampleSelect">
+              <option value="none">
                 Nenhum
               </option>
-              <option value={filtro} onChange={setFiltro("my-posts")}>
+              <option value="my-posts">
                 Meus posts
               </option>
-              <option value={filtro} onChange={setFiltro("posts-date")}>
+              <option value="posts-rating">
                 Posts mais recentes
               </option>
-              <option value={filtro} onChange={setFiltro("posts-rating")}>
+              <option value="posts-date">
                 Posts mais bem avaliados
               </option>
             </Input>
           </FormGroup>
-          <Button>Filtrar</Button>
         </Form>
         {!!posts.length &&
           posts.map((post, index) => (
