@@ -2,16 +2,6 @@ import React, { useState, useEffect } from "react";
 import api from "../../services/api";
 import Spinner from "../Elements/Spinner/index";
 import Post from "../Post";
-import {
-  PostMainStyled,
-  TitlePostMainStyled,
-  ContentPostMainStyled,
-  PostStyled,
-  TitlePostStyled,
-  ContentPostStyled,
-  CreatorPostStyled,
-  Link,
-} from "./styled";
 import { Container } from "reactstrap";
 
 const Posts = ({ my }) => {

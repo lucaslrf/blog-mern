@@ -107,9 +107,7 @@ const FormUser = ({ isLogin }) => {
                 />
                 </FormGroup>
               <Button onClick={() => handlerLogin(email, password)}>Entrar</Button>
-              <Row>
-                <Link to="/register" style={{marginTop:"10px"}}>Cadastre-se</Link>
-              </Row>
+              <Link to="/register" style={{marginLeft:"10px"}}>Cadastre-se</Link>
             </>
           ) : (
             <>

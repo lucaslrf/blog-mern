@@ -8,7 +8,7 @@ router.post("", checkAuth, (req, res, next) => {
   const comment = new Comment({
     content: req.body.content,
     creator: req.userData.userId,
-    post: req.body.postId,
+    post: req.body.post,
     commentDate: new Date()
   });
   console.log(comment);
@@ -42,7 +42,6 @@ router.put("/:id", checkAuth, (req, res, next) => {
     {
       _id: req.params.id,
       creator: req.userData.userId,
-      post: req.body.postId,
     },
     req.body
   ).then((result) => {
@@ -63,6 +62,19 @@ router.get("", (req, res, next) => {
       });
     } else {
       res.status(404).json({ message: "Comment not found!" });
+    }
+  });
+});
+
+router.get("/bypost/:id", (req, res, next) => {
+  Comment.find({ post: req.params.id }).then((comments) => {
+    if (comments) {
+      res.status(200).json({
+        message: "Comments fetched successfully!",
+        comments: comments,
+      });
+    } else {
+      res.status(404).json({ message: "Comments not found!" });
     }
   });
 });

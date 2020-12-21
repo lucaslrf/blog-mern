@@ -3,7 +3,6 @@ import {Link as LinkRouter} from 'react-router-dom';
 
 export const CommentStyled = styled.div`
   width: auto;
-  border-radius: 2px;
   margin-top: 50px;
 `;
 

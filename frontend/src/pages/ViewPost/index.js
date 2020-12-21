@@ -6,8 +6,11 @@ import Post from "../../components/Post";
 import Comment from "../../components/Comment";
 import CommentForm from "../../components/CommentForm";
 import {Container} from 'reactstrap';
+import auth from "../../services/auth";
 
-const ViewPost = ({ match, history }) => {
+const ViewPost = ({ match }) => {
+  const logged = auth.loggedIn();
+  console.log(auth.getUserId(), logged);
   const { id } = match.params;
   const [post, setPost] = useState([]);
   const [comments, setComments] = useState([]);
@@ -60,10 +63,20 @@ const ViewPost = ({ match, history }) => {
     <Base>
       <Container>
         <Post post={post} index={1} list={false} />
-        <CommentForm post={post} handle={handlerComments}/>
-        {comments.map((comment) => (
-          <Comment comment={comment} handle={handlerComments}/>
-        ))}
+        <br />
+        {logged && 
+          <>
+            <CommentForm post={post} handle={handlerComments}/>
+            {comments.map((comment) => (
+              <Comment comment={comment} handle={handlerComments}/>
+            ))}
+          </>
+        }
+        {!logged && 
+          <div style={{textAlign:"center", color: '#6c757d'}}>
+            Efetue login para comentar o Post.
+          </div>
+        }
       </Container>
     </Base>
     

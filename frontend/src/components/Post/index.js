@@ -7,14 +7,16 @@ import {
   TitlePostStyled,
   ContentPostStyled,
   CreatorPostStyled,
-  Link,
 } from "./styled";
 import { Container, Button } from "reactstrap";
 import api from "../../services/api";
-import Comment from "../Comment";
 import BeautyStars from "beauty-stars";
+import { useHistory } from "react-router-dom";
+import getAutor from "../../helpers/getAutor";
+import formatDate from "../../helpers/formatDate";
 
 const Post = ({ post, index, list, my, handle }) => {
+  const history = useHistory();
   const [rating, setRating] = useState(0);
   const [refresh, setRefresh] = useState(true);
   const [autor, setAutor] = useState("");
@@ -32,14 +34,8 @@ const Post = ({ post, index, list, my, handle }) => {
   }
 
   const getAutorPost = async () =>{
-    try{
-      const dataProfile = await api.get( `api/profile/bycreator/${post.creator}`);
-      console.log('data profile post: ', dataProfile.data);
-      setAutor(dataProfile && dataProfile.data ? dataProfile.data.profile.username : "Desconhecido");
-    }catch(error){
-      setAutor("Desconhecido");
-      console.error(error);
-    }
+    const name = await getAutor(post.creator);
+    setAutor(name);
   }
 
   useEffect(() => {
@@ -79,6 +75,7 @@ const Post = ({ post, index, list, my, handle }) => {
           <PostMainStyled>
             <TitlePostMainStyled>{post.title}</TitlePostMainStyled>
             <ContentPostMainStyled>{post.content}</ContentPostMainStyled>
+            <br />
             <BeautyStars
               size="20px"
               value={rating}
@@ -90,19 +87,24 @@ const Post = ({ post, index, list, my, handle }) => {
           <PostStyled>
             <TitlePostStyled>{post.title}</TitlePostStyled>
             <CreatorPostStyled>
-              Autor: {autor} - Criado em: {post.postDate}
+              Autor: {autor} - Criado em: {formatDate(post.postDate)}
             </CreatorPostStyled>
             <ContentPostStyled>{post.content}</ContentPostStyled>
+            <br />
             <BeautyStars
               size="20px"
               value={rating}
               onChange={value => handlerRatingPost(value, post._id)}
             />
             {list && (
-              <Link to={{ pathname: "/posts/" + post._id }}>Ler mais...</Link>
+              <Button onClick={() => history.push("/posts/" + post._id)} color="link">
+                Ler mais...
+              </Button>
             )}
             {my && (
-              <Link to={{ pathname: "/edit-post/" + post._id }}>Editar</Link>
+              <Button onClick={() => history.push("/edit-post/" + post._id)} color="link">
+                Editar
+              </Button>
             )}
             {my && (
               <Button onClick={() => handlerDeletePost(post._id)} color="link">

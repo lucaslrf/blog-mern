@@ -33,6 +33,8 @@ const AuthService = {
 
   logout() {
     localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(USER_ID);
+    localStorage.removeItem(USER_NAME);
   },
 
   setUserId(userId: string) {

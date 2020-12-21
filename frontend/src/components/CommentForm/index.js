@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import api from "../../services/api";
-import {Button, Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
+import {Button, Form, FormGroup, Label, Input, Row, Col, Container} from 'reactstrap';
 
 const CommentForm = ({comment, post, handle}) => {
   const [content, setContent] = useState(comment ? comment.content : "");
@@ -27,7 +27,8 @@ const CommentForm = ({comment, post, handle}) => {
  }
 
   return (
-      <Form className="m-2">
+    <Container>
+      <Form>
         <Row>
           <Col>
             <FormGroup>
@@ -45,6 +46,7 @@ const CommentForm = ({comment, post, handle}) => {
           </Col>
         </Row>
       </Form>
+    </Container>
   );
 };
 
