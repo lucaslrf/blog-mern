@@ -5,16 +5,20 @@ const router = new express.Router();
 router.post("", (req, res, next) => {
   console.log(req.body);
   const quantityExistStars = 0;
+  const quantityExistRatings = 0;
 
   const rating = new Rating({
     quantityStars: req.body.quantityStars + quantityExistStars,
     post: req.body.postId,
+    quantityRatings: quantityExistRatings + 1,
   });
 
   Rating.findOne({ post: req.body.postId }, function (error, rat) {
     if (rat) {
       const quantityExistStars = rat.quantityStars;
+      const quantityExistRatings = rat.quantityRatings;
       const body = {
+        quantityRatings: quantityExistRatings + 1,
         quantityStars: req.body.quantityStars + quantityExistStars,
         post: req.body.postId,
       };

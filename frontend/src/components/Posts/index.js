@@ -45,7 +45,7 @@ const Posts = ({ my }) => {
           handle={handlerDelete}
         />
       ))}
-      {!posts.length && <p>Você não tem nenhum post cadastrado</p>}
+      {!posts.length && <p>Nenhum Post cadastrado.</p>}
     </Container>
   );
 };

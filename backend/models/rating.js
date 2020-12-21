@@ -5,6 +5,10 @@ const Rating = mongoose.model('Rating', {
         type: Number,
         required: true
     },
+    quantityRatings: {
+        type: Number,
+        required: true
+    },
     post: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post',

@@ -25,8 +25,7 @@ const Post = ({ post, index, list, my, handle }) => {
     try {
       const {data} =  await api.get(`/api/rating/bypost/` + post._id);
       console.log('dataRatings: ', data);
-      const resto = data.rating && data.rating.quantityStars % 5;
-      const quantityStarsRating = data.rating ? (resto === 0 ? 5 : resto) : 0;
+      const quantityStarsRating = data.rating && Math.trunc(data.rating.quantityStars/data.rating.quantityRatings);
       setRating(quantityStarsRating);
     } catch (error) {
       console.log(error);
@@ -81,6 +80,11 @@ const Post = ({ post, index, list, my, handle }) => {
               value={rating}
               onChange={value => handlerRatingPost(value, post._id)}
             />
+            {list && (
+              <Button onClick={() => history.push("/posts/" + post._id)} color="link">
+                Ler mais...
+              </Button>
+            )}
           </PostMainStyled>
         }
         {(index !== 0 || my) && (

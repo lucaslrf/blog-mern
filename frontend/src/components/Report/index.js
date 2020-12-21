@@ -119,7 +119,7 @@ const Report = () => {
             <Post
               key={`$post-${index}`}
               post={post}
-              index={index}
+              index={1}
               list={true}
               my={my}
               handle={handlerDelete}
